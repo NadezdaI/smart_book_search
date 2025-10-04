@@ -126,3 +126,4 @@ uv==0.8.22
 wcwidth==0.2.13
 yarl==1.20.1
 zstandard==0.25.0
+qdrant-client=1.15.1
