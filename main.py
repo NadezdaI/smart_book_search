@@ -7,8 +7,8 @@ import pandas as pd
 from functions import display_book
 from qdrant_client import QdrantClient
 from langchain_qdrant import QdrantVectorStore
-#from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+#from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from pathlib import Path
 
 
@@ -81,21 +81,21 @@ details[open] summary {
 
 client = QdrantClient(url=st.secrets["QDRANT_URL"], api_key=st.secrets["QDRANT_API"])
 
-# embeddings_model = HuggingFaceEmbeddings(
-#         model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
-#         model_kwargs={'device': 'cpu'},
-#         encode_kwargs={'normalize_embeddings': False}  
-#     )
-
-embeddings_model_API = HuggingFaceEndpointEmbeddings(
-        repo_id="sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
-        huggingfacehub_api_token=st.secrets["HF_API_KEY"]
+embeddings_model = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+        model_kwargs={'device': 'cpu'},
+        encode_kwargs={'normalize_embeddings': False}  
     )
+
+# embeddings_model_API = HuggingFaceEndpointEmbeddings(
+#         repo_id="sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+#         huggingfacehub_api_token=st.secrets["HF_API_KEY"]
+#     )
 
 vector_store = QdrantVectorStore(
     client=client,
     collection_name="books_collection",
-    embedding=embeddings_model_API
+    embedding=embeddings_model
 )
 
 # ---------- Обработка запроса -------------
