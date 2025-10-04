@@ -4,18 +4,16 @@ import base64
 import io
 import random
 import pandas as pd
-import os
-from dotenv import load_dotenv
 from functions import display_book
 from qdrant_client import QdrantClient
 from langchain_qdrant import QdrantVectorStore
-from langchain_huggingface import HuggingFaceEmbeddings
+#from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from pathlib import Path
 
 
 st.set_page_config(layout="wide")
-
+ 
 # ------ Инициализация состояния -----
 if "show_results" not in st.session_state:
     st.session_state.show_results = False
